@@ -1,12 +1,11 @@
 spring:
   application:
     name: hostel
-  datasource:
-    url: jdbc:postgresql://localhost:5432/hostel
-    username: postgres
-    password: 123
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+
+  profiles:
+    active: test
+
+app:
+  path:
+    v1: api.v1
 

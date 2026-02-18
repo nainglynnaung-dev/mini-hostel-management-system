@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Entity
 @Table(name = "users")
+
 @Data
 public class AuthUser {
 
