@@ -1,5 +1,6 @@
 package com.ly.hostel.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -8,13 +9,17 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final TokenFilter jwtFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -27,7 +32,8 @@ public class SecurityConfig {
                 c->c.configurationSource(corsConfigurationSource())
         ).csrf(AbstractHttpConfigurer::disable)
                 .formLogin(Customizer.withDefaults())
-                .authorizeHttpRequests(c->c.requestMatchers("/**").permitAll().anyRequest().authenticated());
+                .authorizeHttpRequests(c->c.requestMatchers("/**")
+                        .permitAll().anyRequest().authenticated()).addFilterBefore(jwtFilter, AuthenticationFilter.class);
 
 
         return http.build();
@@ -38,18 +44,8 @@ public class SecurityConfig {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("*");
         corsConfiguration.addAllowedHeader("*");
-
-
-
-        corsConfiguration.addAllowedMethod("*");
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.addExposedHeader("Authorization");
-        corsConfiguration.addAllowedMethod("GET");
-        corsConfiguration.addAllowedMethod("POST");
-        corsConfiguration.addAllowedMethod("PUT");
-        corsConfiguration.addAllowedMethod("DELETE");
-        corsConfiguration.addAllowedMethod("HEAD");
-        corsConfiguration.addAllowedMethod("OPTIONS");
+        corsConfiguration.addAllowedMethod("*");
         return new UrlBasedCorsConfigurationSource(
 
         );
