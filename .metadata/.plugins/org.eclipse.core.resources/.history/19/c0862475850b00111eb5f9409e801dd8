@@ -1,0 +1,32 @@
+package com.ly.hostel.config;
+
+import java.io.IOException;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import io.micrometer.common.util.StringUtils;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+@Service
+public class TokenFilter extends OncePerRequestFilter{
+	
+	private final JwtTokenProvider provider;
+	
+	public TokenFilter(JwtTokenProvider pro) {
+	   this.provider=pro;
+	}
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+		
+	   var header=request.getHeader("Authentication");
+	   if(header.startsWith("Bearer") && org.springframework.util.StringUtils.hasText(header)) {
+	     
+	   }
+		
+	}
+
+}

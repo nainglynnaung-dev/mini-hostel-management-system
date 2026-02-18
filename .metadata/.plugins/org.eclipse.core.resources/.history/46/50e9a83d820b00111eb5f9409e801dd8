@@ -1,0 +1,16 @@
+package com.ly.hostel.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+@Service
+public class JwtTokenProvider {
+	
+	
+	@Value("${app.data.access-life}")
+	private int access_life;
+	
+	@Value("${app.data.refresh-life}")
+	private int refresh_life;
+
+}
