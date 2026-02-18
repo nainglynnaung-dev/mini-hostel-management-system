@@ -6,6 +6,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
+<<<<<<< Updated upstream
+=======
+@Data
+>>>>>>> Stashed changes
 public class AuthUser {
 
     @Id
