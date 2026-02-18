@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: hostel
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hostel
+    username: postgres
+    password: 123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+app.data.access-life: 50
+app.data.refresh-life: 300          
+      
+
