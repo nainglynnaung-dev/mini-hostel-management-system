@@ -1,4 +1,5 @@
 package com.ly.hostel.service;
 
-public interface TenantService {
+public interface RoomService{
+
 }
