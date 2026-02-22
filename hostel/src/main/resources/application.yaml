@@ -21,6 +21,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  profiles:
+    active: test
+
+app:
+  path:
+    v1: api.v1
 
 server:
   port: 8080   # Browser မှာသုံးချင်တဲ့ port

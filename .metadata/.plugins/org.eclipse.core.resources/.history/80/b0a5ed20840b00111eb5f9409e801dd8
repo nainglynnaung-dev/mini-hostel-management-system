@@ -1,0 +1,30 @@
+package com.ly.hostel.config;
+
+import javax.crypto.SecretKey;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
+
+import com.ly.hostel.data.TokenType;
+
+import io.jsonwebtoken.Jwts;
+
+@Service
+public class JwtTokenProvider {
+	
+	
+	@Value("${app.data.access-life}")
+	private int access_life;
+	
+	@Value("${app.data.refresh-life}")
+	private int refresh_life;
+	
+	private final SecretKey secret=Jwts.SIG.HS512.key().build();
+	
+	
+	public String generateToken(TokenType type,Authentication auth) {
+		
+	}
+
+}
