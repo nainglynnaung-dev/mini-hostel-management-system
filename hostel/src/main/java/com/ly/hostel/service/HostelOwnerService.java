@@ -1,4 +1,4 @@
 package com.ly.hostel.service;
 
-public interface HostelOwnerService {
+public interface HostelOwnerService{
 }
